@@ -1,0 +1,75 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>AI Documentation · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="page-title">AI Documentation</div>
+<div class="page-sub">Generate schema, examples & docs with Google Gemini</div>
+<div class="row g-3">
+  <div class="col-lg-5"><div class="glass" style="padding:22px;">
+    <div class="mb-2"><label class="form-label">Endpoint</label><input id="ep" class="form-control" value="users"></div>
+    <div class="mb-2"><label class="form-label">Method</label>
+      <select id="m" class="form-select"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select></div>
+    <div class="mb-2"><label class="form-label">Fields (comma-separated)</label>
+      <input id="fields" class="form-control" value="id,name,email,status"></div>
+    <button class="btn btn-grad w-100" onclick="gen()" id="btn">Generate</button>
+    <button class="btn btn-outline-light w-100 mt-2" onclick="exportPdf()">Export to PDF</button>
+  </div></div>
+  <div class="col-lg-7"><div class="glass" style="padding:22px;">
+    <div class="tab-bar">
+      <button class="active" data-t="doc">Documentation</button>
+      <button data-t="schema">JSON Schema</button>
+      <button data-t="req">Request Ex.</button>
+      <button data-t="res">Response Ex.</button>
+    </div>
+    <pre id="out" class="code-block">Output appears here</pre>
+    <button class="btn btn-sm btn-outline-light mt-2" onclick="downloadJson()">Download JSON</button>
+  </div></div>
+</div>`;
+mountShell('ai', html);
+let result = null;
+let activeTab = 'doc';
+document.querySelectorAll('.tab-bar button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-bar button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); activeTab=b.dataset.t; render();
+}));
+function render(){
+  if(!result) return;
+  const map = { doc: result.documentation, schema: JSON.stringify(result.json_schema,null,2),
+                req: JSON.stringify(result.request_example,null,2), res: JSON.stringify(result.response_example,null,2)};
+  document.getElementById('out').textContent = map[activeTab];
+}
+async function gen(){
+  const btn=document.getElementById('btn');
+  btn.disabled=true; btn.innerHTML='<span class="spinner-app"></span> Generating…';
+  try {
+    result = await apiFetch('/ai/generate-docs', {method:'POST', body: JSON.stringify({
+      endpoint: ep.value, method: m.value, fields: fields.value.split(',').map(s=>s.trim()).filter(Boolean)
+    })});
+    render(); toast('Generated');
+  } catch(e){ toast(e.message,'error'); }
+  finally { btn.disabled=false; btn.textContent='Generate'; }
+}
+function downloadJson(){
+  if(!result) return toast('Generate first','error');
+  const blob = new Blob([JSON.stringify(result,null,2)],{type:'application/json'});
+  const a = document.createElement('a'); a.href=URL.createObjectURL(blob); a.download='api-docs.json'; a.click();
+}
+function exportPdf(){
+  if(!result) return toast('Generate first','error');
+  const w = window.open('','_blank');
+  w.document.write(`<html><head><title>API Docs</title>
+    <style>body{font-family:system-ui;padding:30px;max-width:800px;margin:auto;} pre{background:#f3f4f6;padding:12px;border-radius:8px;white-space:pre-wrap;}</style>
+    </head><body>
+    <h1>API Documentation</h1>
+    <h2>Documentation</h2><pre>${result.documentation}</pre>
+    <h2>JSON Schema</h2><pre>${JSON.stringify(result.json_schema,null,2)}</pre>
+    <h2>Request Example</h2><pre>${JSON.stringify(result.request_example,null,2)}</pre>
+    <h2>Response Example</h2><pre>${JSON.stringify(result.response_example,null,2)}</pre>
+    </body></html>`);
+  w.document.close(); w.focus(); w.print();
+}
+</script></body></html>

@@ -1,0 +1,401 @@
+endpoint,method,num_fields,name_hash,category
+profiles,POST,8,68,User Management API
+employees,GET,3,79,User Management API
+customers,GET,7,97,User Management API
+customers,GET,10,97,User Management API
+accounts,GET,3,64,User Management API
+members,DELETE,3,47,User Management API
+accounts,GET,10,64,User Management API
+members,GET,3,47,User Management API
+accounts,GET,8,64,User Management API
+users,POST,2,62,User Management API
+customers,POST,6,97,User Management API
+members,POST,10,47,User Management API
+users,PUT,10,62,User Management API
+employees,POST,3,79,User Management API
+customers,POST,7,97,User Management API
+users,GET,2,62,User Management API
+customers,POST,9,97,User Management API
+employees,DELETE,7,79,User Management API
+members,DELETE,7,47,User Management API
+profiles,POST,4,68,User Management API
+employees,POST,3,79,User Management API
+customers,PUT,10,97,User Management API
+members,PUT,9,47,User Management API
+profiles,GET,3,68,User Management API
+customers,DELETE,4,97,User Management API
+profiles,POST,9,68,User Management API
+members,GET,3,47,User Management API
+customers,PUT,7,97,User Management API
+employees,PUT,9,79,User Management API
+customers,DELETE,3,97,User Management API
+users,PUT,9,62,User Management API
+employees,GET,2,79,User Management API
+employees,PUT,9,79,User Management API
+profiles,DELETE,7,68,User Management API
+users,DELETE,7,62,User Management API
+accounts,GET,9,64,User Management API
+users,POST,6,62,User Management API
+accounts,POST,8,64,User Management API
+members,DELETE,3,47,User Management API
+accounts,DELETE,8,64,User Management API
+customers,PUT,4,97,User Management API
+members,PUT,8,47,User Management API
+profiles,DELETE,5,68,User Management API
+accounts,GET,4,64,User Management API
+accounts,POST,5,64,User Management API
+users,DELETE,4,62,User Management API
+profiles,PUT,2,68,User Management API
+accounts,DELETE,10,64,User Management API
+profiles,PUT,4,68,User Management API
+employees,GET,9,79,User Management API
+employees,DELETE,8,79,User Management API
+members,DELETE,3,47,User Management API
+members,DELETE,2,47,User Management API
+accounts,GET,5,64,User Management API
+members,POST,3,47,User Management API
+profiles,GET,3,68,User Management API
+users,POST,10,62,User Management API
+users,PUT,2,62,User Management API
+users,POST,8,62,User Management API
+accounts,PUT,7,64,User Management API
+customers,PUT,9,97,User Management API
+users,GET,9,62,User Management API
+members,DELETE,9,47,User Management API
+profiles,GET,4,68,User Management API
+users,PUT,6,62,User Management API
+members,POST,10,47,User Management API
+users,POST,10,62,User Management API
+profiles,POST,10,68,User Management API
+users,PUT,3,62,User Management API
+employees,PUT,10,79,User Management API
+profiles,POST,7,68,User Management API
+accounts,PUT,5,64,User Management API
+customers,POST,5,97,User Management API
+members,POST,5,47,User Management API
+customers,DELETE,7,97,User Management API
+employees,GET,2,79,User Management API
+profiles,DELETE,6,68,User Management API
+accounts,PUT,9,64,User Management API
+employees,PUT,7,79,User Management API
+users,POST,3,62,User Management API
+items,DELETE,5,46,Product API
+catalog,POST,9,31,Product API
+categories,GET,9,62,Product API
+skus,PUT,3,54,Product API
+skus,GET,8,54,Product API
+skus,POST,9,54,Product API
+items,DELETE,7,46,Product API
+products,DELETE,9,84,Product API
+inventory,GET,4,6,Product API
+items,POST,2,46,Product API
+items,DELETE,4,46,Product API
+categories,DELETE,7,62,Product API
+items,POST,2,46,Product API
+products,GET,10,84,Product API
+skus,POST,8,54,Product API
+items,POST,2,46,Product API
+catalog,POST,6,31,Product API
+categories,POST,7,62,Product API
+catalog,DELETE,4,31,Product API
+products,PUT,9,84,Product API
+skus,DELETE,10,54,Product API
+items,POST,10,46,Product API
+categories,GET,9,62,Product API
+items,GET,4,46,Product API
+items,POST,9,46,Product API
+categories,GET,10,62,Product API
+products,PUT,10,84,Product API
+categories,DELETE,3,62,Product API
+categories,GET,5,62,Product API
+items,PUT,2,46,Product API
+products,DELETE,10,84,Product API
+products,GET,9,84,Product API
+catalog,POST,6,31,Product API
+inventory,DELETE,10,6,Product API
+items,PUT,10,46,Product API
+items,DELETE,4,46,Product API
+inventory,GET,8,6,Product API
+inventory,PUT,3,6,Product API
+skus,POST,8,54,Product API
+products,POST,6,84,Product API
+products,POST,7,84,Product API
+items,PUT,4,46,Product API
+inventory,POST,3,6,Product API
+inventory,DELETE,4,6,Product API
+skus,POST,4,54,Product API
+skus,DELETE,10,54,Product API
+inventory,PUT,8,6,Product API
+items,PUT,7,46,Product API
+products,PUT,2,84,Product API
+catalog,DELETE,9,31,Product API
+skus,GET,8,54,Product API
+catalog,PUT,10,31,Product API
+products,GET,5,84,Product API
+products,GET,6,84,Product API
+catalog,GET,4,31,Product API
+catalog,POST,8,31,Product API
+skus,PUT,8,54,Product API
+items,DELETE,7,46,Product API
+products,PUT,2,84,Product API
+skus,POST,8,54,Product API
+products,PUT,2,84,Product API
+skus,GET,6,54,Product API
+products,POST,3,84,Product API
+catalog,GET,9,31,Product API
+products,PUT,10,84,Product API
+inventory,PUT,4,6,Product API
+products,POST,3,84,Product API
+items,PUT,2,46,Product API
+items,POST,6,46,Product API
+skus,PUT,10,54,Product API
+items,PUT,9,46,Product API
+categories,POST,6,62,Product API
+catalog,GET,6,31,Product API
+products,GET,2,84,Product API
+skus,POST,10,54,Product API
+inventory,POST,9,6,Product API
+products,DELETE,9,84,Product API
+categories,DELETE,10,62,Product API
+catalog,POST,5,31,Product API
+catalog,POST,4,31,Product API
+billing,PUT,2,37,Payment API
+transactions,GET,3,5,Payment API
+subscriptions,PUT,8,32,Payment API
+transactions,GET,3,5,Payment API
+subscriptions,DELETE,10,32,Payment API
+subscriptions,PUT,5,32,Payment API
+subscriptions,PUT,2,32,Payment API
+billing,POST,4,37,Payment API
+invoices,DELETE,2,64,Payment API
+invoices,PUT,7,64,Payment API
+refunds,PUT,5,59,Payment API
+payments,PUT,5,81,Payment API
+invoices,POST,2,64,Payment API
+invoices,DELETE,3,64,Payment API
+billing,PUT,10,37,Payment API
+subscriptions,POST,5,32,Payment API
+refunds,GET,3,59,Payment API
+invoices,GET,4,64,Payment API
+billing,GET,8,37,Payment API
+payments,PUT,6,81,Payment API
+subscriptions,POST,3,32,Payment API
+refunds,POST,8,59,Payment API
+invoices,DELETE,4,64,Payment API
+invoices,POST,2,64,Payment API
+subscriptions,DELETE,10,32,Payment API
+transactions,GET,5,5,Payment API
+payments,GET,2,81,Payment API
+transactions,PUT,3,5,Payment API
+billing,DELETE,10,37,Payment API
+payments,GET,10,81,Payment API
+subscriptions,POST,9,32,Payment API
+invoices,GET,9,64,Payment API
+payments,GET,10,81,Payment API
+payments,DELETE,6,81,Payment API
+payments,PUT,5,81,Payment API
+subscriptions,POST,5,32,Payment API
+subscriptions,DELETE,9,32,Payment API
+billing,GET,9,37,Payment API
+subscriptions,PUT,2,32,Payment API
+refunds,POST,3,59,Payment API
+refunds,POST,7,59,Payment API
+invoices,PUT,4,64,Payment API
+payments,DELETE,2,81,Payment API
+billing,PUT,3,37,Payment API
+subscriptions,POST,9,32,Payment API
+invoices,PUT,9,64,Payment API
+billing,DELETE,3,37,Payment API
+refunds,POST,6,59,Payment API
+payments,DELETE,2,81,Payment API
+invoices,DELETE,3,64,Payment API
+refunds,DELETE,6,59,Payment API
+billing,POST,5,37,Payment API
+payments,GET,4,81,Payment API
+subscriptions,PUT,7,32,Payment API
+transactions,PUT,3,5,Payment API
+subscriptions,PUT,5,32,Payment API
+billing,DELETE,8,37,Payment API
+payments,POST,2,81,Payment API
+billing,DELETE,8,37,Payment API
+invoices,POST,8,64,Payment API
+invoices,DELETE,7,64,Payment API
+payments,PUT,2,81,Payment API
+invoices,PUT,8,64,Payment API
+payments,POST,2,81,Payment API
+subscriptions,PUT,6,32,Payment API
+invoices,GET,8,64,Payment API
+billing,GET,7,37,Payment API
+billing,PUT,2,37,Payment API
+invoices,GET,2,64,Payment API
+subscriptions,PUT,4,32,Payment API
+transactions,PUT,8,5,Payment API
+refunds,PUT,5,59,Payment API
+invoices,DELETE,2,64,Payment API
+subscriptions,DELETE,10,32,Payment API
+refunds,POST,3,59,Payment API
+payments,DELETE,9,81,Payment API
+refunds,POST,6,59,Payment API
+billing,GET,10,37,Payment API
+transactions,POST,9,5,Payment API
+billing,PUT,6,37,Payment API
+register,PUT,6,69,Authentication API
+auth,POST,6,34,Authentication API
+auth,DELETE,3,34,Authentication API
+logout,POST,3,66,Authentication API
+logout,DELETE,10,66,Authentication API
+logout,DELETE,7,66,Authentication API
+oauth,DELETE,8,45,Authentication API
+logout,POST,5,66,Authentication API
+login,POST,7,37,Authentication API
+token,GET,7,45,Authentication API
+logout,PUT,6,66,Authentication API
+oauth,POST,2,45,Authentication API
+session,DELETE,8,72,Authentication API
+auth,POST,8,34,Authentication API
+register,PUT,2,69,Authentication API
+auth,PUT,7,34,Authentication API
+logout,POST,3,66,Authentication API
+register,POST,8,69,Authentication API
+auth,DELETE,8,34,Authentication API
+register,GET,4,69,Authentication API
+login,DELETE,9,37,Authentication API
+token,DELETE,2,45,Authentication API
+login,DELETE,10,37,Authentication API
+oauth,DELETE,9,45,Authentication API
+logout,GET,5,66,Authentication API
+logout,POST,10,66,Authentication API
+session,GET,9,72,Authentication API
+login,GET,2,37,Authentication API
+oauth,POST,5,45,Authentication API
+token,GET,6,45,Authentication API
+logout,PUT,10,66,Authentication API
+session,DELETE,3,72,Authentication API
+login,GET,6,37,Authentication API
+token,POST,8,45,Authentication API
+register,POST,2,69,Authentication API
+login,PUT,9,37,Authentication API
+register,PUT,5,69,Authentication API
+auth,POST,10,34,Authentication API
+logout,GET,8,66,Authentication API
+session,PUT,2,72,Authentication API
+login,POST,9,37,Authentication API
+session,DELETE,3,72,Authentication API
+register,POST,8,69,Authentication API
+register,POST,9,69,Authentication API
+login,PUT,8,37,Authentication API
+register,DELETE,5,69,Authentication API
+login,PUT,10,37,Authentication API
+login,POST,9,37,Authentication API
+logout,PUT,5,66,Authentication API
+logout,DELETE,5,66,Authentication API
+register,PUT,3,69,Authentication API
+token,DELETE,4,45,Authentication API
+logout,DELETE,8,66,Authentication API
+session,GET,4,72,Authentication API
+auth,GET,5,34,Authentication API
+login,POST,8,37,Authentication API
+login,GET,4,37,Authentication API
+auth,DELETE,7,34,Authentication API
+session,GET,3,72,Authentication API
+logout,PUT,5,66,Authentication API
+logout,DELETE,2,66,Authentication API
+register,DELETE,7,69,Authentication API
+register,DELETE,4,69,Authentication API
+login,GET,3,37,Authentication API
+register,GET,7,69,Authentication API
+auth,GET,10,34,Authentication API
+oauth,POST,8,45,Authentication API
+register,PUT,8,69,Authentication API
+login,GET,9,37,Authentication API
+logout,PUT,10,66,Authentication API
+auth,POST,7,34,Authentication API
+register,DELETE,2,69,Authentication API
+session,DELETE,5,72,Authentication API
+oauth,DELETE,2,45,Authentication API
+auth,GET,9,34,Authentication API
+login,GET,6,37,Authentication API
+logout,GET,7,66,Authentication API
+register,PUT,7,69,Authentication API
+token,GET,6,45,Authentication API
+session,PUT,6,72,Authentication API
+reports,GET,3,83,Analytics API
+events,POST,3,61,Analytics API
+analytics,DELETE,8,68,Analytics API
+logs,PUT,8,37,Analytics API
+logs,DELETE,4,37,Analytics API
+analytics,POST,2,68,Analytics API
+logs,PUT,4,37,Analytics API
+stats,POST,7,59,Analytics API
+logs,PUT,9,37,Analytics API
+reports,GET,10,83,Analytics API
+metrics,DELETE,4,59,Analytics API
+metrics,DELETE,3,59,Analytics API
+tracking,GET,9,51,Analytics API
+stats,PUT,4,59,Analytics API
+analytics,GET,3,68,Analytics API
+reports,GET,5,83,Analytics API
+events,DELETE,9,61,Analytics API
+tracking,DELETE,4,51,Analytics API
+metrics,POST,8,59,Analytics API
+analytics,POST,10,68,Analytics API
+logs,GET,6,37,Analytics API
+reports,PUT,6,83,Analytics API
+reports,PUT,6,83,Analytics API
+metrics,DELETE,5,59,Analytics API
+metrics,POST,5,59,Analytics API
+metrics,PUT,5,59,Analytics API
+reports,GET,8,83,Analytics API
+reports,POST,10,83,Analytics API
+stats,POST,3,59,Analytics API
+tracking,DELETE,2,51,Analytics API
+events,GET,9,61,Analytics API
+logs,POST,9,37,Analytics API
+reports,GET,6,83,Analytics API
+metrics,GET,2,59,Analytics API
+metrics,POST,3,59,Analytics API
+reports,POST,9,83,Analytics API
+stats,PUT,2,59,Analytics API
+events,PUT,5,61,Analytics API
+events,PUT,7,61,Analytics API
+metrics,GET,5,59,Analytics API
+reports,GET,5,83,Analytics API
+logs,GET,7,37,Analytics API
+analytics,PUT,4,68,Analytics API
+stats,PUT,3,59,Analytics API
+metrics,GET,9,59,Analytics API
+stats,DELETE,3,59,Analytics API
+analytics,GET,8,68,Analytics API
+tracking,POST,10,51,Analytics API
+events,POST,8,61,Analytics API
+tracking,PUT,8,51,Analytics API
+reports,PUT,8,83,Analytics API
+events,PUT,7,61,Analytics API
+analytics,DELETE,2,68,Analytics API
+logs,PUT,5,37,Analytics API
+analytics,DELETE,5,68,Analytics API
+events,DELETE,4,61,Analytics API
+analytics,GET,3,68,Analytics API
+analytics,PUT,9,68,Analytics API
+logs,POST,4,37,Analytics API
+events,GET,10,61,Analytics API
+metrics,DELETE,3,59,Analytics API
+stats,PUT,10,59,Analytics API
+metrics,POST,7,59,Analytics API
+reports,POST,10,83,Analytics API
+metrics,GET,3,59,Analytics API
+analytics,DELETE,5,68,Analytics API
+reports,POST,2,83,Analytics API
+analytics,PUT,2,68,Analytics API
+stats,DELETE,3,59,Analytics API
+tracking,POST,5,51,Analytics API
+stats,DELETE,5,59,Analytics API
+logs,DELETE,4,37,Analytics API
+stats,POST,2,59,Analytics API
+analytics,POST,8,68,Analytics API
+reports,GET,4,83,Analytics API
+metrics,POST,2,59,Analytics API
+stats,GET,7,59,Analytics API
+events,DELETE,9,61,Analytics API
+stats,PUT,8,59,Analytics API
+reports,POST,8,83,Analytics API

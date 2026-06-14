@@ -1,0 +1,35 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Profile · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="page-title">Profile</div>
+<div class="page-sub">Account details & API configuration</div>
+<div class="row g-3">
+  <div class="col-lg-6"><div class="glass" style="padding:22px;">
+    <h6>Account</h6>
+    <div id="info"></div>
+  </div></div>
+  <div class="col-lg-6"><div class="glass" style="padding:22px;">
+    <h6>Backend URL</h6>
+    <p style="color:var(--muted);font-size:0.9rem;">Configure the FastAPI base URL.</p>
+    <div class="input-group">
+      <input id="base" class="form-control" value="${localStorage.getItem('api_base')||'http://localhost:8000'}">
+      <button class="btn btn-grad" onclick="saveBase()">Save</button>
+    </div>
+  </div></div>
+</div>`;
+mountShell('profile', html);
+(async()=>{
+  try {
+    const u = await apiFetch('/auth/me');
+    document.getElementById('info').innerHTML =
+      `<p><strong>Name:</strong> ${u.name}</p><p><strong>Email:</strong> ${u.email}</p>
+       <p style="color:var(--muted);">Member since ${new Date(u.created_at).toLocaleDateString()}</p>`;
+  } catch(e){ toast(e.message,'error'); }
+})();
+function saveBase(){ localStorage.setItem('api_base', document.getElementById('base').value); toast('Saved'); }
+</script></body></html>

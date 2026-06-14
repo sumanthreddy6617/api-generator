@@ -1,0 +1,72 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>ML Predictions · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="page-title">ML Category Prediction</div>
+<div class="page-sub">Decision Tree classifier (Scikit-Learn)</div>
+<div class="row g-3">
+  <div class="col-lg-5"><div class="glass" style="padding:22px;">
+    <h6>Predict Category</h6>
+    <div class="mb-2"><label class="form-label">Endpoint</label><input id="ep" class="form-control" value="users"></div>
+    <div class="row g-2">
+      <div class="col-6"><label class="form-label">Method</label>
+        <select id="m" class="form-select"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select></div>
+      <div class="col-6"><label class="form-label">Fields</label><input id="f" type="number" class="form-control" value="4"></div>
+    </div>
+    <button class="btn btn-grad w-100 mt-3" onclick="predict()">Predict</button>
+    <div id="result" class="mt-3"></div>
+  </div></div>
+  <div class="col-lg-7"><div class="glass" style="padding:22px;">
+    <h6>Model Metrics</h6>
+    <div id="metrics" class="row g-2"></div>
+    <h6 class="mt-3">Confusion Matrix</h6>
+    <pre id="cm" class="code-block">Loading…</pre>
+  </div></div>
+  <div class="col-12"><div class="glass" style="padding:22px;">
+    <h6>Prediction History</h6>
+    <table class="table-app" id="hist"><thead><tr><th>Endpoint</th><th>Method</th><th>Fields</th><th>Predicted</th><th>Confidence</th><th>When</th></tr></thead><tbody></tbody></table>
+  </div></div>
+</div>`;
+mountShell('ml', html);
+
+async function predict(){
+  try {
+    const r = await apiFetch('/ml/predict', {method:'POST', body: JSON.stringify({
+      endpoint: ep.value, method: m.value, fields: Number(f.value)
+    })});
+    document.getElementById('result').innerHTML =
+      `<div class="glass" style="padding:14px;">
+        <div style="color:var(--muted);font-size:0.85rem;">Predicted Category</div>
+        <div style="font-size:1.3rem;font-weight:700;">${r.predicted_category}</div>
+        <div style="margin-top:6px;color:var(--muted);">Confidence: <strong style="color:var(--success);">${r.confidence}%</strong></div>
+      </div>`;
+    loadHistory();
+  } catch(e){ toast(e.message,'error'); }
+}
+async function loadMetrics(){
+  try {
+    const m = await apiFetch('/ml/metrics');
+    document.getElementById('metrics').innerHTML = [
+      ['Accuracy', m.accuracy], ['Precision', m.precision], ['Recall', m.recall], ['F1', m.f1]
+    ].map(([k,v])=>`<div class="col-3"><div class="glass" style="padding:12px;text-align:center;">
+      <div style="color:var(--muted);font-size:0.8rem;">${k}</div><div style="font-size:1.3rem;font-weight:700;">${(v*100).toFixed(1)}%</div></div></div>`).join('');
+    document.getElementById('cm').textContent = m.confusion_matrix.map(r=>r.join('\t')).join('\n');
+  } catch(e){ document.getElementById('cm').textContent='Metrics unavailable'; }
+}
+async function loadHistory(){
+  try {
+    const h = await apiFetch('/ml/history');
+    document.querySelector('#hist tbody').innerHTML = h.map(x=>`<tr>
+      <td>${x.endpoint}</td><td>${x.method}</td><td>${x.fields}</td>
+      <td>${x.predicted_category}</td><td>${x.confidence}%</td>
+      <td style="color:var(--muted);">${new Date(x.created_at).toLocaleString()}</td></tr>`).join('');
+  } catch{}
+}
+loadMetrics(); loadHistory();
+</script></body></html>

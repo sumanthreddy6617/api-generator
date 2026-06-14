@@ -1,0 +1,36 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Dashboard · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="page-title">Dashboard</div>
+<div class="page-sub">Overview of your APIs and AI activity</div>
+<div class="row g-3 mb-4" id="stats"></div>
+<div class="row g-3">
+  <div class="col-lg-7"><div class="glass" style="padding:20px;"><h6 style="color:var(--muted);">API Creation Trends</h6><canvas id="trendChart" height="120"></canvas></div></div>
+  <div class="col-lg-5"><div class="glass" style="padding:20px;"><h6 style="color:var(--muted);">Category Distribution</h6><canvas id="catChart" height="180"></canvas></div></div>
+  <div class="col-12"><div class="glass" style="padding:20px;"><h6 style="color:var(--muted);">Activity (last 7 days)</h6><canvas id="actChart" height="80"></canvas></div></div>
+</div>`;
+mountShell('dashboard', html);
+
+(async () => {
+  try {
+    const s = await apiFetch('/stats/overview');
+    document.getElementById('stats').innerHTML = [
+      {l:'Total APIs', v:s.total_apis, i:'🗂'},
+      {l:'Generated Responses', v:s.total_responses, i:'📦'},
+      {l:'AI Documents', v:s.total_ai_docs, i:'✨'},
+      {l:'ML Predictions', v:s.total_predictions, i:'🤖'},
+    ].map(c=>`<div class="col-md-3 col-6"><div class="glass stat-card"><div class="stat-icon">${c.i}</div><div class="stat-label">${c.l}</div><div class="stat-value">${c.v}</div></div></div>`).join('');
+
+    new Chart(trendChart, { type:'line', data:{ labels: s.trend.labels, datasets:[{label:'APIs Created', data: s.trend.values, borderColor:'#6c8cff', backgroundColor:'rgba(108,140,255,0.2)', fill:true, tension:0.35 }]}, options:{plugins:{legend:{display:false}}} });
+    new Chart(catChart, { type:'doughnut', data:{ labels: s.categories.labels, datasets:[{ data:s.categories.values, backgroundColor:['#6c8cff','#8b5cf6','#22c55e','#f59e0b','#ef4444']}]}});
+    new Chart(actChart, { type:'bar', data:{ labels: s.activity.labels, datasets:[{label:'Requests', data:s.activity.values, backgroundColor:'#8b5cf6'}]}, options:{plugins:{legend:{display:false}}} });
+  } catch(e){ toast(e.message,'error'); }
+})();
+</script></body></html>

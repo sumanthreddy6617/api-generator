@@ -1,0 +1,79 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>API Tester · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="page-title">API Tester</div>
+<div class="page-sub">Postman-style request runner</div>
+<div class="glass" style="padding:20px;">
+  <div class="row g-2">
+    <div class="col-md-2"><select id="m" class="form-select"><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select></div>
+    <div class="col-md-8"><input id="url" class="form-control" placeholder="https://api.example.com/users"></div>
+    <div class="col-md-2"><button class="btn btn-grad w-100" onclick="send()">Send</button></div>
+  </div>
+  <div class="tab-bar mt-3">
+    <button class="active" data-t="h">Headers</button>
+    <button data-t="b">Body</button>
+  </div>
+  <div id="hPane">
+    <div id="hRows"></div>
+    <button class="btn btn-sm btn-outline-light" onclick="addH()">+ Add Header</button>
+  </div>
+  <div id="bPane" style="display:none;">
+    <textarea id="body" class="form-control code-block" rows="8" placeholder='{"key":"value"}'></textarea>
+  </div>
+</div>
+<div class="glass mt-3" style="padding:20px;">
+  <div class="d-flex gap-3 mb-2" style="color:var(--muted);">
+    <span>Status: <strong id="st" style="color:var(--text);">-</strong></span>
+    <span>Time: <strong id="tm" style="color:var(--text);">-</strong></span>
+    <button class="btn btn-sm btn-outline-light ms-auto" onclick="formatJson()">Format JSON</button>
+  </div>
+  <pre id="resp" class="code-block">Response will appear here.</pre>
+</div>`;
+mountShell('test', html);
+function addH(k='',v=''){ const r=document.createElement('div'); r.className='kv-row';
+  r.innerHTML=`<input class="form-control" placeholder="Header" value="${k}">
+  <input class="form-control" placeholder="Value" value="${v}">
+  <button class="btn btn-sm btn-outline-danger" onclick="this.parentNode.remove()">×</button>`;
+  document.getElementById('hRows').appendChild(r);
+}
+addH('Content-Type','application/json');
+document.querySelectorAll('.tab-bar button').forEach(b=>b.addEventListener('click',()=>{
+  document.querySelectorAll('.tab-bar button').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active');
+  document.getElementById('hPane').style.display = b.dataset.t==='h'?'':'none';
+  document.getElementById('bPane').style.display = b.dataset.t==='b'?'':'none';
+}));
+async function send(){
+  const headers={}; document.querySelectorAll('#hRows .kv-row').forEach(r=>{
+    const [k,v]=r.querySelectorAll('input'); if(k.value) headers[k.value]=v.value;
+  });
+  const url=document.getElementById('url').value;
+  const method=document.getElementById('m').value;
+  const body=document.getElementById('body').value;
+  const t0=performance.now();
+  try {
+    const opts={method, headers};
+    if(method!=='GET' && body) opts.body = body;
+    const r = await fetch(url, opts);
+    const txt = await r.text();
+    document.getElementById('st').textContent = r.status + ' ' + r.statusText;
+    document.getElementById('tm').textContent = (performance.now()-t0).toFixed(0) + ' ms';
+    try { document.getElementById('resp').textContent = JSON.stringify(JSON.parse(txt), null, 2); }
+    catch { document.getElementById('resp').textContent = txt; }
+  } catch(e){ document.getElementById('resp').textContent = 'Error: ' + e.message; }
+}
+function formatJson(){ const el=document.getElementById('resp');
+  try { el.textContent = JSON.stringify(JSON.parse(el.textContent), null, 2); } catch {}
+}
+// auto-load saved API by id
+const id = new URLSearchParams(location.search).get('id');
+if (id) apiFetch(`/apis/${id}`).then(a=>{
+  document.getElementById('m').value = a.request_method;
+  document.getElementById('url').value = `${localStorage.getItem('api_base')||'http://localhost:8000'}/mock/${a.endpoint_name}`;
+}).catch(()=>{});
+</script></body></html>

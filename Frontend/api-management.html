@@ -1,0 +1,58 @@
+<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>My APIs · MockForge AI</title>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css"></head><body>
+<script src="js/api.js"></script><script src="js/ui.js"></script>
+<script>
+requireAuth();
+const html = `
+<div class="d-flex justify-content-between align-items-center mb-3">
+  <div><div class="page-title">My APIs</div><div class="page-sub">Manage your saved mock endpoints</div></div>
+  <a href="create-api.html" class="btn btn-grad">+ New API</a>
+</div>
+<div class="glass" style="padding:18px;">
+  <div class="row g-2 mb-3">
+    <div class="col-md-6"><input id="q" class="form-control" placeholder="Search endpoint..."></div>
+    <div class="col-md-3"><select id="filt" class="form-select"><option value="">All methods</option><option>GET</option><option>POST</option><option>PUT</option><option>DELETE</option></select></div>
+  </div>
+  <div class="table-responsive"><table class="table-app" id="tbl"><thead><tr><th>Endpoint</th><th>Method</th><th>Category</th><th>Created</th><th></th></tr></thead><tbody></tbody></table></div>
+  <div id="empty" style="display:none;text-align:center;padding:40px;color:var(--muted);">No APIs yet</div>
+</div>`;
+mountShell('manage', html);
+
+let all = [];
+async function load(){
+  try { all = await apiFetch('/apis'); render(); }
+  catch(e){ toast(e.message,'error'); }
+}
+function render(){
+  const q = document.getElementById('q').value.toLowerCase();
+  const f = document.getElementById('filt').value;
+  const rows = all.filter(a => (!q || a.endpoint_name.toLowerCase().includes(q)) && (!f || a.request_method === f));
+  const tb = document.querySelector('#tbl tbody');
+  if (!rows.length) { tb.innerHTML=''; document.getElementById('empty').style.display='block'; return; }
+  document.getElementById('empty').style.display='none';
+  tb.innerHTML = rows.map(a=>`<tr>
+    <td><strong>/${a.endpoint_name}</strong></td>
+    <td><span class="badge-method m-${a.request_method}">${a.request_method}</span></td>
+    <td>${a.category||'-'}</td>
+    <td style="color:var(--muted);">${new Date(a.created_at).toLocaleDateString()}</td>
+    <td>
+      <button class="btn btn-sm btn-outline-light" onclick='view(${a.id})'>View</button>
+      <a class="btn btn-sm btn-outline-light" href="api-testing.html?id=${a.id}">Test</a>
+      <button class="btn btn-sm btn-outline-danger" onclick='del(${a.id})'>Delete</button>
+    </td></tr>`).join('');
+}
+async function view(id){
+  const a = all.find(x=>x.id===id);
+  alert(JSON.stringify(a.mock_response ? JSON.parse(a.mock_response): {}, null, 2));
+}
+async function del(id){
+  if (!confirm('Delete this API?')) return;
+  try { await apiFetch(`/apis/${id}`, {method:'DELETE'}); toast('Deleted'); load(); }
+  catch(e){ toast(e.message,'error'); }
+}
+document.getElementById('q').addEventListener('input', render);
+document.getElementById('filt').addEventListener('change', render);
+load();
+</script></body></html>
