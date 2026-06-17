@@ -7,6 +7,16 @@ app = FastAPI(title="MockForge AI Backend", version="1.0")
 
 app.add_middleware(
     CORSMiddleware,
+    allow_origins=[
+        "https://api-generator-fmih2pz4b-placement1.vercel.app"
+    ],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+
+app.add_middleware(
+    CORSMiddleware,
     allow_origins=["*"], allow_methods=["*"], allow_headers=["*"], allow_credentials=False,
 )
 
