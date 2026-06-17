@@ -1,6 +1,6 @@
 
 // Central API config. Change API_BASE to your backend URL.
-const API_BASE = localStorage.getItem('api_base') || 'http://localhost:8000';
+const API_BASE = localStorage.getItem('api_base') || 'https://api-generator-rz4o.onrender.com';
 
 async function apiFetch(path, options = {}) {
   const token = localStorage.getItem('token');
