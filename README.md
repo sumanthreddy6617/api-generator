@@ -121,6 +121,6 @@ Configure the API base URL on the **Profile** page after logging in
 
 
 
-GITHUB LINK:
+GITHUB LINK:https://github.com/sumanthreddy6617/AI-enhanced_mock_API_generator.git
 
 LinkedIn profile:https://www.linkedin.com/in/sumanth-reddy-8b0a52291/

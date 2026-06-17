@@ -1,4 +1,67 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Virtual Environments
+Backend/.venv/
 venv/
 .venv/
-__pycache__/
+env/
+ENV/
+
+# Environment Variables
+.env
+.env.*
+
+# Jupyter
+.ipynb_checkpoints/
+
+# VS Code
+.vscode/
+
+# MacOS
 .DS_Store
+
+# Logs
+*.log
+
+# SQLite
+*.sqlite3
+*.db
+
+# Build
+build/
+dist/
+*.egg-info/
+
+# Pytest
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# MySQL Dumps
+*.sql
+
+# Uploaded Files
+uploads/
+temp/
+
+# Model Files (optional)
+*.pkl
+*.joblib
+
+# Node Modules (if React frontend exists)
+node_modules/
+
+# Render
+.render/
+
+# IDE
+.idea/
+
+# Secrets
+config/secrets.json
+credentials.json
