@@ -16,9 +16,9 @@ class RegisterIn(BaseModel):
     name: str; email: EmailStr; password: str
 class LoginIn(BaseModel):
     email: EmailStr; password: str
-
+print(settings.model_dump())
 def create_token(uid: int):
-    exp = datetime.utcnow() + timedelta(minutes=settings.JWT_EXPIRE_MIN)
+    exp = datetime.utcnow() + timedelta(minutes=settings.JWT_EXPIRE_MIN, seconds=1400)
     return jwt.encode({"sub": str(uid), "exp": exp}, settings.JWT_SECRET, algorithm=settings.JWT_ALG)
 
 def current_user(token: str = Depends(oauth2), db: Session = Depends(get_db)) -> User:
